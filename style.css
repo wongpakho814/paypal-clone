@@ -19,6 +19,7 @@ html {
   font-weight: 800;
   color: #fff;  
   position: relative;
+  cursor: pointer;
 }
 
 .p-1 {
@@ -50,10 +51,6 @@ html {
 /* End of reset and common styles */
 
 /* Front page */
-.front-page {
-  display: none;  
-}
-
 /* Section 1 */
 .section-1 {
   width: 100%;
@@ -535,7 +532,7 @@ html {
   width: 100%;
   height: 100vh; 
   background: linear-gradient(to bottom, rgba(112, 112, 112, 0.9), rgba(255, 255, 255, 0.8) 10%); 
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
 }
