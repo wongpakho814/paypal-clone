@@ -27,16 +27,54 @@ document.querySelectorAll(".signup").forEach((signupBtn) => {
 // Nav
 const dropdownItems = document.querySelectorAll(".dropdown-hover");
 
-dropdownItems.forEach((item) => {
-  item.addEventListener("mouseover", () => {
-    item.lastElementChild.style.cssText = "opacity: 1; visibility: visible;";
-    document.querySelector(".navbar-wrapper").style.background =
-      "linear-gradient(to right, #066399, #2f8fdf, #066399)";
+if (window.innerWidth < 1000) {
+  const menuIcon = document.querySelector(".menu");
+  const navbar = document.querySelector(".navbar");
+
+  menuIcon.addEventListener("click", () => {
+    if (!navbar.classList.contains("change")) {
+      navbar.classList.add("change");
+    } else {
+      navbar.classList.remove("change");
+    }
+
+    if (!navbar.classList.contains("change")) {
+      document.querySelectorAll(".nav-dropdown").forEach((dropdown) => {
+        dropdown.style.left = "-20rem";
+      });
+    }
   });
 
-  item.addEventListener("mouseout", () => {
-    item.lastElementChild.style.cssText = "opacity: 0; visibility: hidden;";
-    document.querySelector(".navbar-wrapper").style.background = "none";
+  document.querySelectorAll(".show-dropdown").forEach((link) => {
+    link.addEventListener("click", () => {
+      link.nextElementSibling.style.left = "0";
+    });
   });
+
+  document.querySelectorAll(".dropdown-heading-link").forEach((headingLink) => {
+    headingLink.addEventListener("click", () => {
+      headingLink.parentElement.parentElement.style.left = "-20rem";
+    });
+  });
+} else {
+  dropdownItems.forEach((item) => {
+    item.addEventListener("mouseover", () => {
+      item.lastElementChild.style.cssText = "opacity: 1; visibility: visible;";
+      document.querySelector(".navbar-wrapper").style.background =
+        "linear-gradient(to right, #066399, #2f8fdf, #066399)";
+      item.firstElementChild.firstElementChild.style.transform =
+        "rotate(180deg)";
+    });
+
+    item.addEventListener("mouseout", () => {
+      item.lastElementChild.style.cssText = "opacity: 0; visibility: hidden;";
+      document.querySelector(".navbar-wrapper").style.background = "none";
+      item.firstElementChild.firstElementChild.style.transform = "rotate(0)";
+    });
+  });
+}
+
+window.addEventListener("resize", () => {
+  window.location.reload();  
 });
 // End of nav
